@@ -1,57 +1,189 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="dist/theme/dracula.css">
+  <title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-markdown>
-          <textarea data-template>
-            ## What I learnt from doing trunk based development 🐘
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/dracula.css">
 
-            And how it can help you too!
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown data-separator-vertical="^--$">
+        <script type="text/template">
+            ## Committing to main
+            What I learnt from doing trunk based development 🐘
+
+            And how it can help you, too! ✨
+
+            Note: With this talk I'd like to encourage teams to try this practise as well...
+            Or at least adopt some of the ways of working that I've learnt from this because I think it's beneficial.
             ---
-            ### What I'll cover in this presentation
+            ## What I'll cover in this presentation
 
-            - What do I mean by trunk based development?
-            - Two stories about my experience and the challenges that came with it
-            - Reflection on what could have gone better
-            - What practises we can adopt in our "short lived feature branch" environment
+            1. What is trunk based development?
+            1. Two stories about my own experience
+            1. Reflection time
+            1. What practises we can adopt
             ---
-            ## Slide 3
-          </textarea>
-        </section>
-			</div>
-		</div>
+            ## What is trunk based development?
+            - every developer makes small commits to main <!-- .element: class="fragment" -->
+            - every commit is deployed directly to production <!-- .element: class="fragment" -->
+            - 🚫 no branches <!-- .element: class="fragment" -->
+            ---
+            <!-- vertical slides -->
+            ## Audience participation, please!
+            --
+            ## Who is practising continous integration? ✋
+            --
+            ## Who is practising trunk based development? ✋
+            --
+            ## But is your integration really continous if you don't commit to main? 🤯
+            ---
+            ## Does this not result in chaos?
+            - well, sometimes <!-- .element: class="fragment" -->
+            - you have to learn it <!-- .element: class="fragment" -->
+            - you have to have the right safety net in place <!-- .element: class="fragment" -->
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+            ➡️ but some of the best practises can help every team <!-- .element: class="fragment" -->
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+            Note: So you might be wondering to yourself... does this trunk based business not result in total chaos?
+            You have to follow certain practises in order to do it... and I think those practises are useful for any team, no matter if you're using feature branches or trunk based at scale or you commit to main.
+            ---
+            # Story time
+            ---
+            ## What I'll cover in this presentation
+
+            1. What is trunk based development?
+            1. ➡️  ➡️  Two stories about my own experience ⬅️  ⬅️
+            1. Reflection on what could have gone better
+            1. What practises we can adopt in our"short lived feature branch" environment
+            ---
+            ## Let me tell you about the time...
+            - 👨🏼‍💻 👩🏼‍💻 👩🏻‍💻 <!-- .element: class="fragment" -->
+            - 🏣 📝 <!-- .element: class="fragment" -->
+            - medium sized code base (Ruby) <!-- .element: class="fragment" -->
+            - we'd been working with feature branches & PRs <!-- .element: class="fragment" -->
+            - pair programming most of the time <!-- .element: class="fragment" -->
+            - very strict TDD <!-- .element: class="fragment" -->
+            - releases were infrequently done by the client <!-- .element: class="fragment" -->
+            - no feature flags <!-- .element: class="fragment" -->
+            - 🙋🏼‍♂️: "Let's commit to main!" <!-- .element: class="fragment" -->
+
+            Note: back in the day, Danny, Sarah and I were working on an automated underwriting system for a large insurance company.
+            ---
+            ### Disclaimer
+            Names, characters, places and incidents either are products of the author's imagination or are used fictitiously.
+
+            Or are they?????
+            ---
+            ## The result
+            - a bit of a mess
+            - we made huge commits
+            - we waited sometimes for days to push to main
+            - 🙋🏼‍ would make huge refactorings in the evening
+            - git pull always resulted in conflicts
+            - it was painful
+            ---
+            ## Let me tell you about the other time...
+            - 👨‍👩‍👦‍👦👪👨‍👨‍👦 
+            - 🏡🖥️
+            - started a new codebase (React)
+            - distributed team Melbourne ↔️ US West coast
+            - synchronous overlap: 1 hour a day
+            - how else would you work? 🤷🏻‍♂️
+            ---
+            ## The process 🦘
+            - always pair-program
+            - strict TDD
+            - every commit automatically released to production
+            - build notifications in Slack -> if red, fix immediately
+            - push small commits continuously
+            - run the full build locally before each commit
+
+            Note: we didn't use feature flags
+            ---
+            ### The other part of the team 🙋🏼‍♂️🙋🏼‍♂️🍔
+            - pushed untested code
+            - did not pair much
+            - code quality lower
+            ---
+            ## The result
+            - trunk based can work!
+            - it made us faster
+            - everyone felt more ownership over the whole codebase
+            - code quality was generally high
+            ---
+            1. What is trunk based development?
+            1. Two stories about my own experience
+            1. ➡️  ➡️  Reflection time ⬅️  ⬅️
+            1. What practises we can adopt in our"short lived feature branch" environment
+            ---
+            # Reflection time
+            ---
+            ## Why was my second experience much better than the first?
+
+            Note: Both times we fulfilled the two important pre-requesits, which is having a strong test suite and pair-programming.
+
+            ---
+            ### The important difference:
+
+            We didn't wait...
+
+            Note: To be fair, my first experience with TBD was 6 or 7 years ago and I don't remember all the details.
+            But back then we didn't manage to make our commits small enough to be able to push them straight away.
+            We also didn't pull the code often enough for fear of merge conflicts... "let's finish our code first and then we deal with the merge conflicts". It can't work like that.
+            It requires a different way of approaching your coding. 
+            ---
+            ### How to split your feature into small, stand-alone commits?
+            - hide your feature behind a feature flag
+            - use the "branch by abstraction technique"
+            - use Storybook to build components
+            - do any refactoring separately
+
+            Note: You might wonder when to know when to make the commit. General rule: after the red-green-refactor test cycle.
+            And never commit when the tests are failing.
+            ---
+            ### What were the benefits
+
+
+          
+
+            <!-- code is in a releasable state after each commit -->
+            <!-- be in the habit of not breaking things... if the build is red, you have to fix it straight away -->
+            <!-- something about raising a PR, request for changes, implementing those, review again... takes time -->
+            <!-- reviewing changes is much easier... it's in your IDE -->
+            <!-- full commit history is retained -->
+            <!-- the process optimises team performance rather than individual performance. why is this good? -->
+          </script>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
 </html>
