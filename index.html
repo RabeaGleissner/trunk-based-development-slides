@@ -101,6 +101,9 @@
             - distributed team Melbourne ↔️ US West coast
             - synchronous overlap: 1 hour a day
             - how else would you work? 🤷🏻‍♂️
+
+            Note: There were a couple of people in our team (including me!!) who pushed for using short-lived feature branches.
+            After my first experienced with trunk based development I didn't really fancy doing it again. I especially thought that it will be hard to work async with the American team.
             ---
             ## The process 🦘
             - always pair-program
@@ -110,18 +113,15 @@
             - push small commits continuously
             - run the full build locally before each commit
 
-            Note: we didn't use feature flags
-            ---
-            ### The other part of the team 🙋🏼‍♂️🙋🏼‍♂️🍔
-            - pushed untested code
-            - did not pair much
-            - code quality lower
+            Note: It wasn't possible to pair-program 100% because we sometimes were an uneven number of devs. So we had this alternative where one person could work solo but would need to have a sync call with someone to go through the changes in the commit.
+            We didn't use feature flags.
             ---
             ## The result
-            - trunk based can work!
-            - it made us faster
-            - everyone felt more ownership over the whole codebase
+            - we made really good progress
             - code quality was generally high
+            - hardly any merge conflicts
+            - everyone knew how all the features worked
+            - trunk based can work!
             ---
             1. What is trunk based development?
             1. Two stories about my own experience
@@ -144,26 +144,116 @@
             We also didn't pull the code often enough for fear of merge conflicts... "let's finish our code first and then we deal with the merge conflicts". It can't work like that.
             It requires a different way of approaching your coding. 
             ---
-            ### How to split your feature into small, stand-alone commits?
-            - hide your feature behind a feature flag
-            - use the "branch by abstraction technique"
-            - use Storybook to build components
-            - do any refactoring separately
-
-            Note: You might wonder when to know when to make the commit. General rule: after the red-green-refactor test cycle.
-            And never commit when the tests are failing.
+            ## You have to change your development approach
             ---
-            ### What were the benefits
+            ## It's ok to have unused code
 
+            Note: But don't comment out code... you want to know that your tests always pass and your unused code can be integrated with the rest of the codebase
+            --
+            ### Build your components with Storybook
 
-          
+            Note: If it's front-end code, maybe build the component separately first and when it's ready, then integrate it into your page.
+            --
+            ### Split out any refactoring
 
-            <!-- code is in a releasable state after each commit -->
-            <!-- be in the habit of not breaking things... if the build is red, you have to fix it straight away -->
-            <!-- something about raising a PR, request for changes, implementing those, review again... takes time -->
-            <!-- reviewing changes is much easier... it's in your IDE -->
-            <!-- full commit history is retained -->
-            <!-- the process optimises team performance rather than individual performance. why is this good? -->
+            Note: If you start working on a feature and realise that you need to do some refactoring, do that first and separately. 
+            --
+            ### Hide your code behind a feature flag
+
+            Note: that also makes it easy to test in production
+            --
+            ### Use the "branch by abstraction" technique
+
+            Note: TODO - explain what that is
+            --
+            ### Commit as soon as possible
+
+            Note: When is that? As soon as you completed the red-green-refactor cycle of TDD. Never commit when the tests are failing
+            --
+            ### Communicate a lot more
+
+            Note: The team needs to work together much more closely. Everyone needs to know what others are working on so they really understand the changes they're pulling down, how their own code fits with those... you can't rely on a short explanation in a PR, quick review... yeah, I kind of get it... no, everyone in the team really needs to understand what's going on
+            ---
+            ## Was it better than using short-lived feature branches?
+
+            Note: The experiment worked... but was it worth the effort of changing the way we worked and approached a feature?
+            ---
+            # Yes
+
+            Note: and that is the end of my talk
+            --
+            # Why?
+
+            Note: joking, I'll tell you why I think it was great
+            --
+            ### Code is always in a releasable state
+
+            Note: There's never any... is everyone ready for a release? Oh no, wait, give me half an hour, I need to fix this... If you want to get your feature into prod, just do it!
+            --
+            ### You don't need to wait for a PR review
+
+            Note: It's not just the PR review and possibly approval, it's also suggestion for changes, asking for clarification etc... it all takes time. 
+            --
+            ### You do move faster
+
+            Note: and as a result of that, I'm convinced that you do move faster as a team.
+            --
+            ### You get into the habit of not breaking things
+
+            Note: Mentally, it's just different if you know that your code will go live immediately. You are way more careful, more sharp. And when the build is red, it's serious. We'd address it straight away.
+            --
+            ### Reviewing code changes is much easier
+
+            Note: when you pull the code down to get the latest changes, it's much easier to review them. You're in your IDE, you're in the context of your code... many times I've actually pulled down the branch to review a PR to see the context in which the code runs.
+            --
+            ### Full commit history is retained
+
+            Note: You can really follow the history of the codebase much more naturally. There are no merge commits... no squashes... 
+            --
+            ### Collective code ownership and knowledge
+
+            Note: Everyone felt a lot more ownership over the code. You don't have the feeling of "someone else built this, I don't know what their thinking was... let me ask this person but they're not working today...". Everyone knew much more about the codebase, why things were the way they were etc.
+            --
+            ### The process optimises for team performance
+
+            Note: instead of individual performance. TODO: why is this good?
+            ---
+            ## Convinced yet?
+            ---
+            ### How do you as a team start?
+
+            Note: So do you fancy trying it out as a team?
+            --
+            ### Start slowly
+
+            - small codebase
+            - you have to have confidence in your tests
+            - you have to pair-program
+
+            Note: I wouldn't recommend going all in straight away. Maybe start with a new codebase or a small codebase.
+            --
+            ### Even if your team process and codebase is not there yet...
+
+            Note: I know that most teams probably don't pair-program that much and most codebases don't have super reliable tests.
+            --
+            ### How about you start with...
+            --
+            ## Raise small PRs
+
+            Note: Make your PRs a bit smaller... it doesn't have to be one feature per PR. Advantage of a small PR is that the review will be much quicker, you get it merged in quicker, releases are less risky...
+            --
+            ## Remove the mandatory PR approvals
+
+            Note: I don't mean, just merge in all PRs as you want... but you could agree as a team that you ask for feedback if you want some... or you could just inform people, hey, I made this change, I'll merge it in now... or if it's a small change, just merge it in.
+            --
+            ## Agree to pair on a small thing and push a commit to `main`
+
+            Note: just try it out with a small feature... maybe you'll enjoy pairing on something. Just push it to main.
+            --
+            ## Let all commits on main go to staging
+
+            Note: As a first step you don't need to make all commits go to prod straight away but you could let them go to staging instead.
+            --
           </script>
       </section>
     </div>
