@@ -36,42 +36,55 @@
             1. What practises we can adopt
             ---
             ## What is trunk based development?
-            - every developer makes small commits to main <!-- .element: class="fragment" -->
-            - every commit is deployed directly to production <!-- .element: class="fragment" -->
-            - 🚫 no branches <!-- .element: class="fragment" -->
+
+            - every developer makes small commits to main
+            - every commit is deployed directly to production
+            - 🚫 no branches
+
+            Note: It's a development practise where every there are no branches. Every developer in the team commits straight to the main branch, which is also sometimes called "trunk", hence the name.
             ---
             <!-- vertical slides -->
             ## Audience participation, please!
+
+            Note: Ok, before I get deeper into this talk, I'd like to ask for some audience participation, please.
             --
             ## Who is practising continous integration? ✋
+
+            Note: Please raise your hand on Teams if your team practises continous integration.
             --
             ## Who is practising trunk based development? ✋
+
+            Note: And now, please raise your hand on Teams if your team practises trunk based development in the way that I described it.
             --
             ## But is your integration really continous if you don't commit to main? 🤯
             ---
             ## Does this not result in chaos?
-            - well, sometimes <!-- .element: class="fragment" -->
+            - well, sometimes 
             - you have to learn it <!-- .element: class="fragment" -->
             - you have to have the right safety net in place <!-- .element: class="fragment" -->
 
-            ➡️ but some of the best practises can help every team <!-- .element: class="fragment" -->
+            ➡️ some of the best practises can help every team <!-- .element: class="fragment" -->
 
             Note: So you might be wondering to yourself... does this trunk based business not result in total chaos?
             You have to follow certain practises in order to do it... and I think those practises are useful for any team, no matter if you're using feature branches or trunk based at scale or you commit to main.
             ---
-            # Story time
-            ---
-            ## What I'll cover in this presentation
-
-            1. What is trunk based development?
-            1. ➡️  ➡️  Two stories about my own experience ⬅️  ⬅️
-            1. Reflection on what could have gone better
-            1. What practises we can adopt in our"short lived feature branch" environment
+            # 2. Story time
             ---
             ## Let me tell you about the time...
             - 👨🏼‍💻 👩🏼‍💻 👩🏻‍💻 <!-- .element: class="fragment" -->
             - 🏣 📝 <!-- .element: class="fragment" -->
-            - medium sized code base (Ruby) <!-- .element: class="fragment" -->
+
+            Note: back in the day, Danny, Sarah and I were working on an automated underwriting system for a large insurance company.
+            ---
+            ### Disclaimer
+            Names, characters, places and incidents are products of the author's imagination.
+
+            Or are they?????
+            ---
+            ## Let me tell you about the time...
+            - 👨🏼‍💻 👩🏼‍💻 👩🏻‍💻 
+            - 🏣 📝 
+            - medium sized code base (Ruby)
             - we'd been working with feature branches & PRs <!-- .element: class="fragment" -->
             - pair programming most of the time <!-- .element: class="fragment" -->
             - very strict TDD <!-- .element: class="fragment" -->
@@ -80,11 +93,6 @@
             - 🙋🏼‍♂️: "Let's commit to main!" <!-- .element: class="fragment" -->
 
             Note: back in the day, Danny, Sarah and I were working on an automated underwriting system for a large insurance company.
-            ---
-            ### Disclaimer
-            Names, characters, places and incidents either are products of the author's imagination or are used fictitiously.
-
-            Or are they?????
             ---
             ## The result
             - a bit of a mess
@@ -95,23 +103,23 @@
             - it was painful
             ---
             ## Let me tell you about the other time...
-            - 👨‍👩‍👦‍👦👪👨‍👨‍👦 
-            - 🏡🖥️
-            - started a new codebase (React)
-            - distributed team Melbourne ↔️ US West coast
-            - synchronous overlap: 1 hour a day
-            - how else would you work? 🤷🏻‍♂️
+            - 👨‍👩‍👦‍👦👪👨‍👨‍👦 <!-- .element: class="fragment" -->
+            - 🏡🖥️ <!-- .element: class="fragment" -->
+            - started a new codebase (React) <!-- .element: class="fragment" -->
+            - distributed team Melbourne ↔️ US West coast <!-- .element: class="fragment" -->
+            - synchronous overlap: 1 hour a day <!-- .element: class="fragment" -->
+            - how else would you work? 🤷🏻‍♂️ <!-- .element: class="fragment" -->
 
             Note: There were a couple of people in our team (including me!!) who pushed for using short-lived feature branches.
             After my first experienced with trunk based development I didn't really fancy doing it again. I especially thought that it will be hard to work async with the American team.
             ---
             ## The process 🦘
-            - always pair-program
-            - strict TDD
-            - every commit automatically released to production
-            - build notifications in Slack -> if red, fix immediately
-            - push small commits continuously
-            - run the full build locally before each commit
+            - always pair-program <!-- .element: class="fragment" -->
+            - strict TDD <!-- .element: class="fragment" -->
+            - every commit automatically released to production <!-- .element: class="fragment" -->
+            - build notifications in Slack -> if red, fix immediately <!-- .element: class="fragment" -->
+            - push small commits continuously <!-- .element: class="fragment" -->
+            - run the full build locally before each commit <!-- .element: class="fragment" -->
 
             Note: It wasn't possible to pair-program 100% because we sometimes were an uneven number of devs. So we had this alternative where one person could work solo but would need to have a sync call with someone to go through the changes in the commit.
             We didn't use feature flags.
@@ -123,12 +131,7 @@
             - everyone knew how all the features worked
             - trunk based can work!
             ---
-            1. What is trunk based development?
-            1. Two stories about my own experience
-            1. ➡️  ➡️  Reflection time ⬅️  ⬅️
-            1. What practises we can adopt in our"short lived feature branch" environment
-            ---
-            # Reflection time
+            # 3. Reflection time
             ---
             ## Why was my second experience much better than the first?
 
@@ -145,14 +148,14 @@
             It requires a different way of approaching your coding. 
             ---
             ## You have to change your development approach
-            ---
+            --
             ## It's ok to have unused code
 
             Note: But don't comment out code... you want to know that your tests always pass and your unused code can be integrated with the rest of the codebase
             --
-            ### Build your components with Storybook
+            ### Build your components in isolation first
 
-            Note: If it's front-end code, maybe build the component separately first and when it's ready, then integrate it into your page.
+            Note: If it's front-end code, maybe build the component separately first, for example in Storybook and when it's ready, then integrate it into your page. You can do the same with backend code... start building some data retrieval and transformation logic... later the API and only actually use it when it's done.
             --
             ### Split out any refactoring
 
@@ -164,7 +167,9 @@
             --
             ### Use the "branch by abstraction" technique
 
-            Note: TODO - explain what that is
+            Note: Yes, I said there are no branches... this isn't a real branch. If you need to make a change to an existing component, the idea is that you first create an abstraction layer for it. And change all client code that depends on the component, to depend on the abstraction layer instead. Then write a second implementation for this abstraction layer and when that's all working correctly, switch over the second implementation for the first. You can even keep the abstraction as it might help you with your unit tests if you have this additional seam.
+
+            There's a blog post by Martin Fowler about this who can explain this much better than me.
             --
             ### Commit as soon as possible
 
@@ -172,9 +177,11 @@
             --
             ### Communicate a lot more
 
-            Note: The team needs to work together much more closely. Everyone needs to know what others are working on so they really understand the changes they're pulling down, how their own code fits with those... you can't rely on a short explanation in a PR, quick review... yeah, I kind of get it... no, everyone in the team really needs to understand what's going on
+            Note: The team needs to work together much more closely. Everyone needs to know what others are working on so they really understand the changes they're pulling down, how their own code fits with those... you can't rely on a short explanation in a PR, quick review... yeah, I kind of get it... no, everyone in the team really needs to understand what's going on.
+
+            In a way you also need to communicate less because your latest code will always be visible to all other engineers.
             ---
-            ## Was it better than using short-lived feature branches?
+            ## Is it better than using short-lived feature branches?
 
             Note: The experiment worked... but was it worth the effort of changing the way we worked and approached a feature?
             ---
@@ -184,15 +191,15 @@
             --
             # Why?
 
-            Note: joking, I'll tell you why I think it was great
+            Note: joking, I'll tell you why I think it was a really great way of working.
             --
             ### Code is always in a releasable state
 
-            Note: There's never any... is everyone ready for a release? Oh no, wait, give me half an hour, I need to fix this... If you want to get your feature into prod, just do it!
+            Note: There's never any... "is everyone ready for a release? Oh no, wait, give me half an hour, I need to fix this..." If you want to get your code into prod, just do it!
             --
             ### You don't need to wait for a PR review
 
-            Note: It's not just the PR review and possibly approval, it's also suggestion for changes, asking for clarification etc... it all takes time. 
+            Note: It's not just the PR review and possibly approval, it's also suggestion for changes, asking for clarification etc... it all takes time. You raise the PR, you switch context to work on another thing... 
             --
             ### You do move faster
 
@@ -214,9 +221,12 @@
 
             Note: Everyone felt a lot more ownership over the code. You don't have the feeling of "someone else built this, I don't know what their thinking was... let me ask this person but they're not working today...". Everyone knew much more about the codebase, why things were the way they were etc.
             --
-            ### The process optimises for team performance
+            ### Couple of caveats
 
-            Note: instead of individual performance. TODO: why is this good?
+            - I've only tried this with codebases under active development <!-- .element: class="fragment" -->
+            - One downside: harder to revert a feature <!-- .element: class="fragment" -->
+
+            Note: I would be remiss if I didn't mention some small caveats... Nothing is always 100% positive.
             ---
             ## Convinced yet?
             ---
@@ -246,14 +256,17 @@
 
             Note: I don't mean, just merge in all PRs as you want... but you could agree as a team that you ask for feedback if you want some... or you could just inform people, hey, I made this change, I'll merge it in now... or if it's a small change, just merge it in.
             --
-            ## Agree to pair on a small thing and push a commit to `main`
+            ## Agree to pair on a small feature and push a commit to main
 
             Note: just try it out with a small feature... maybe you'll enjoy pairing on something. Just push it to main.
             --
-            ## Let all commits on main go to staging
+            ## Deploy all commits on main into staging
 
             Note: As a first step you don't need to make all commits go to prod straight away but you could let them go to staging instead.
-            --
+            ---
+            # Any questions?
+
+            Thank you for listening 🐘
           </script>
       </section>
     </div>
