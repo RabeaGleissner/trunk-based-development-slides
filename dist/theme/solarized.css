@@ -361,3 +361,8 @@ html * {
     background-color: var(--r-background-color);
   }
 }
+.chapter-title {
+  color: pink;
+  font-size: 0.6em;
+  margin-bottom: 50px;
+}
