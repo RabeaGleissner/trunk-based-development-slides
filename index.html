@@ -42,7 +42,7 @@
             - every commit is deployed directly to production
             - 🚫 no branches
 
-            Note: It's a development practise where every there are no branches. Every developer in the team commits straight to the main branch, which is also sometimes called "trunk", hence the name.
+            Note: It's a development practise where there are no branches. Every developer in the team commits straight to the main branch, which is also sometimes called "trunk", hence the name.
             ---
             ## Audience participation, please!
 
@@ -87,7 +87,7 @@
             ### Disclaimer
             Names, places and incidents are all products of the author's imagination.
 
-            Or are they? 🕵🏻‍♂️
+            Or are they??? 🕵🏻‍♂️
             --
             <div class="chapter-title">Story time (1/2)</div>
 
@@ -107,11 +107,14 @@
 
             ## How it went...
             - a bit of a mess
-            - we made huge commits
+            - `git pull` always resulted in conflicts
             - we waited sometimes for days to push to main
             - 🙋🏼‍♂ would make huge refactorings in the evening
-            - `git pull` always resulted in conflicts
             - it was painful
+            --
+            <div class="chapter-title">Story time (2/2)</div>
+
+            ## The second time...
             --
             <div class="chapter-title">Story time (2/2)</div>
 
@@ -133,7 +136,7 @@
             - strict TDD <!-- .element: class="fragment" -->
             - every commit automatically released to production <!-- .element: class="fragment" -->
             - build notifications in Slack -> if red, fix immediately <!-- .element: class="fragment" -->
-            - push small commits continuously <!-- .element: class="fragment" -->
+            - continuously push small commits <!-- .element: class="fragment" -->
             - run the full build locally before each commit <!-- .element: class="fragment" -->
 
             Note: It wasn't possible to pair-program 100% because we sometimes were an uneven number of devs. So we had this alternative where one person could work solo but would need to have a sync call with someone to go through the changes in the commit.
@@ -201,7 +204,7 @@
             --
             <div class="chapter-title">How to make it work...</div>
 
-            ### Commit as soon as possible
+            ### Commit and push as soon as possible
 
             Note: When is that? As soon as you completed the red-green-refactor cycle of TDD. Never commit when the tests are failing
             --
@@ -210,6 +213,8 @@
             ### Communicate a lot more
 
             Note: The team needs to work together much more closely. Everyone needs to know what others are working on so they really understand the changes they're pulling down, how their own code fits with those... you can't rely on a short explanation in a PR, quick review... yeah, I kind of get it... no, everyone in the team really needs to understand what's going on.
+
+            Danny's over night refactoring shouldn't have happened without telling us first.
 
             In a way you also need to communicate less because your latest code will always be visible to all other engineers.
             ---
@@ -247,7 +252,7 @@
 
             ### You get into the habit of not breaking things
 
-            Note: Mentally, it's just different if you know that your code will go live immediately. You are way more careful, more sharp. And when the build is red, it's serious. We'd address it straight away.
+            Note: You'll have to focus on making the build fast, seeing that you need to run it before each push. Also mentally, it's just different if you know that your code will go live immediately. You are way more careful, more sharp. And when the build is red, it's serious. We'd address it straight away.
             --
             <div class="chapter-title">Why is it better?</div>
 
@@ -273,10 +278,9 @@
 
             Note: Save some money, save the hassle of keeping the staging content / data up to date and realistic...
             --
-            ### Couple of caveats
+            ### One downside
 
-            - I've only tried this with codebases under active development <!-- .element: class="fragment" -->
-            - One downside: harder to revert a feature <!-- .element: class="fragment" -->
+            - it's harder to revert a feature <!-- .element: class="fragment" -->
 
             Note: I would be remiss if I didn't mention some small caveats... Nothing is always 100% positive.
             ---
@@ -288,9 +292,10 @@
             --
             ### Start slowly
 
-            - small codebase
-            - you have to have confidence in your tests
-            - you have to pair-program
+            - Small codebase
+            - You have to have confidence in your tests
+            - Your tests need to run fast enough
+            - You have to pair-program
 
             Note: I wouldn't recommend going all in straight away. Maybe start with a new codebase or a small codebase.
             --
@@ -314,7 +319,7 @@
             --
             <div class="chapter-title">Start with...</div>
 
-            ## Agreeing to pair on a small feature and push a commit to main
+            ## Pairing on a small feature and push a commit to main
 
             Note: just try it out with a small feature... maybe you'll enjoy pairing on something. Just push it to main.
             --
@@ -332,9 +337,9 @@
 
             Note: Please raise your hand if you think you can start adopting some of the practises in your team.
             ---
-            # Any questions?
+            ## Any questions or feedback?
 
-            Thank you for listening 🐘
+            And thank you for listening 🐘
           </script>
       </section>
     </div>
